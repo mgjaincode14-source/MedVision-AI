@@ -1,0 +1,24 @@
+# Virtual Environment (Linux/macOS/Windows)
+.venv/
+venv/
+ENV/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# MedVision Large Datasets
+data/
+*.zip
+*.tar.gz
+
+# Local test outputs & temporary files
+output/
+sample_chest_xray.png
+
+# System files
+.DS_Store
+.idea/
+.idea/
