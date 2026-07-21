@@ -1,9 +1,3 @@
-"""
-MedVision AI - Cross-Platform Environment Setup
-Run this once: python setup_env.py
-Works on Windows, macOS, and Linux.
-"""
-
 import subprocess
 import sys
 import os

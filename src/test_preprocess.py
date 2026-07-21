@@ -6,17 +6,17 @@ def run_tests():
     image_path = "data/images/00000061_025.png"
     if not os.path.exists(image_path):
         raise FileNotFoundError(f"Test image not found at: {image_path}. Please check your dataset installation.")
-        
+
     results = preprocess_pipeline(image_path)
     print(f"Original: {results['original'].shape}, range: [{results['original'].min()}, {results['original'].max()}]")
     print(f"Enhanced: {results['enhanced'].shape}, range: [{results['enhanced'].min()}, {results['enhanced'].max()}]")
     print(f"Resized: {results['resized'].shape}")
     print(f"Normalized: {results['normalized'].shape}, range: [{results['normalized'].min():.4f}, {results['normalized'].max():.4f}]")
-    
+
     output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
     save_path = os.path.join(output_dir, "preprocessing_comparison.png")
-    
+
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
     axes[0].imshow(results['original'], cmap='gray')
     axes[0].set_title(f"Original\nShape: {results['original'].shape}")
