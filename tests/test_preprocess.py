@@ -8,9 +8,14 @@ sys.path.append(os.path.join(PROJECT_ROOT, "src"))
 
 from preprocess import load_image, apply_clahe, resize_image, normalize_image, preprocess_pipeline
 
-def test_load_image():
-    # Use the sample image we know exists
-    img_path = os.path.join(PROJECT_ROOT, "data", "images", "00000061_025.png")
+import cv2
+
+def test_load_image(tmp_path):
+    # Create a dummy image file
+    img_path = str(tmp_path / "dummy.png")
+    dummy_img = np.zeros((100, 100), dtype=np.uint8)
+    cv2.imwrite(img_path, dummy_img)
+    
     img = load_image(img_path)
     assert isinstance(img, np.ndarray)
     assert len(img.shape) == 2 # Grayscale
@@ -32,8 +37,11 @@ def test_normalize_image():
     assert normalized.max() <= 1.0
     assert normalized.min() >= 0.0
 
-def test_preprocess_pipeline():
-    img_path = os.path.join(PROJECT_ROOT, "data", "images", "00000061_025.png")
+def test_preprocess_pipeline(tmp_path):
+    img_path = str(tmp_path / "dummy.png")
+    dummy_img = np.zeros((500, 500), dtype=np.uint8)
+    cv2.imwrite(img_path, dummy_img)
+    
     results = preprocess_pipeline(img_path, target_size=(224, 224))
     
     assert 'original' in results
